@@ -26,18 +26,18 @@ const EditMovieForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3001/api/movies/${id}`, movie)
+      .post(`http://localhost:3001/api/movies/`, movie)
       .then((res) => props.setMovies(res.data))
       .catch((err) => console.log("Wrong data", { err }));
-    push(`/movies/${id}`);
+    push(`/movies/`);
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/movies/${id}`)
-      .then((res) => setMovie(res.data))
-      .catch((err) => console.log("Wrong data", { err }));
-  }, [id]);
+  //   useEffect(() => {
+  //     axios
+  //       .get(`http://localhost:3001/api/movies/${id}`)
+  //       .then((res) => setMovie(res.data))
+  //       .catch((err) => console.log("Wrong data", { err }));
+  //   }, [id]);
 
   const { title, director, genre, metascore, description } = movie;
 
@@ -47,7 +47,7 @@ const EditMovieForm = (props) => {
         <form onSubmit={handleSubmit}>
           <div className="modal-header">
             <h4 className="modal-title">
-              Editing <strong>{movie.title}</strong>
+              Adding <strong>{movie.title}</strong>
             </h4>
           </div>
           <div className="modal-body">
